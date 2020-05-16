@@ -33,3 +33,4 @@ monthly_shooting_cts %>%
     strip.placement = "outside"
   )
 
+ggsave('images/shooting_seasonality.png')
