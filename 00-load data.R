@@ -12,3 +12,8 @@ shootings_historical <-read.socrata(url,stringsAsFactors = FALSE)
 shootings_ytd <- read.socrata(url_ytd,stringsAsFactors = FALSE)
 
 shootings <- rbind(shootings_historical, shootings_ytd) #bind_rows doesn't coerce characters
+
+shootings <- shootings %>%
+  distinct(incident_key, .keep_all = T) %>% 
+  mutate(occur_date = ymd(occur_date),
+         incident_year = year(occur_date))
