@@ -16,4 +16,5 @@ shootings <- rbind(shootings_historical, shootings_ytd) #bind_rows doesn't coerc
 shootings <- shootings %>%
   distinct(incident_key, .keep_all = T) %>% 
   mutate(occur_date = ymd(occur_date),
-         incident_year = year(occur_date))
+         incident_year = year(occur_date),
+         incident_week = ymd(cut(occur_date, "week")))
