@@ -35,29 +35,3 @@ monthly_shooting_cts %>%
 
 ggsave('images/shooting_seasonality.png')
 
-
-library(anomalize)
-library(tsibble) 
-
-shootings %>%
-  filter(incident_year > 2006) %>%
-  count(incident_week) %>%
-  as_tsibble(index = incident_week) %>% 
-  fill_gaps(n = 0) %>%
-  time_decompose(n, method = "stl") %>%
-  anomalize(remainder, method = "iqr") %>%
-  time_recompose() %>%
-  # Anomaly Visualization
-  plot_anomalies(time_recomposed = TRUE, ncol = 3, alpha_dots = 0.25) +
-  labs(title = "Tidyverse Anomalies", subtitle = "STL + IQR Methods") 
-  
-
-shootings %>%
-  filter(incident_year > 2010) %>%
-  count(incident_week) %>%
-  as_tsibble(index = incident_week) %>% 
-  fill_gaps(n = 0) %>%
-  time_decompose(n, method = "stl") %>%
-  anomalize(remainder) %>%
-  plot_anomaly_decomposition() 
-  

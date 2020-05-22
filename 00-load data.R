@@ -5,6 +5,9 @@ library(janitor)
 library(sf)
 library(RSocrata)
 
+
+source("helpers.R")
+
 url = 'https://data.cityofnewyork.us/Public-Safety/NYPD-Shooting-Incident-Data-Historic-/833y-fsy8'
 url_ytd = 'https://data.cityofnewyork.us/Public-Safety/NYPD-Shooting-Incident-Data-Year-To-Date-/5ucz-vwe8/data'
 
